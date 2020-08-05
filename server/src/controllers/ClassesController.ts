@@ -32,10 +32,10 @@ class ClassesController{
 		const trx = await db.transaction()
 
 		try{
-			const {name, imageURL, whatsapp, description, subject, price, schedule} = request.body;
+			const {name, avatar, whatsapp, description, subject, price, schedule} = request.body;
 
 
-			const user_id = await trx('proffys').insert([{name, imageURL, whatsapp, description}])
+			const user_id = await trx('proffys').insert([{name, imageURL: avatar, whatsapp, description}])
 			const class_id = await trx('classes').insert([{subject,price,user_id}])
 
 			const classSchedule = schedule.map((scheduleItem:ScheduleItem)=>{
