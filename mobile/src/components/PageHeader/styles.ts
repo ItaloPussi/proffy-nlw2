@@ -3,9 +3,14 @@ import {StyleSheet} from 'react-native'
 const styles = StyleSheet.create({
 	container:{
 		padding: 40,
-		backgroundColor: '#8257e5'
+		backgroundColor: '#8257e5',
 	},
 	topBar:{
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-between'
+	},
+	header:{
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'space-between'
@@ -16,7 +21,8 @@ const styles = StyleSheet.create({
 		fontSize: 24,
 		lineHeight: 32,
 		maxWidth: 160,
-		marginVertical:40
+		marginTop:30,
+		marginBottom:50
 	}
 })
 

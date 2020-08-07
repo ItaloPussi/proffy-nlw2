@@ -11,7 +11,7 @@ interface TeacherItemProps{
 		subject: string,
 		description: string,
 		price: string,
-		whatsapp?: string,
+		whatsapp: string,
 	}
 
 }

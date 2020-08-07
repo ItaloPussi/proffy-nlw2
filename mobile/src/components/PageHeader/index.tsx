@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {ReactNode} from 'react'
 import {View, Text, Image} from 'react-native'
 import {BorderlessButton} from 'react-native-gesture-handler'
 
@@ -10,6 +10,7 @@ import styles from './styles'
 
 interface PageHeaderProps{
 	title: string,
+	headerRight?: ReactNode
 }
 const PageHeader:React.FC<PageHeaderProps> = (props) =>{
 
@@ -27,8 +28,11 @@ const PageHeader:React.FC<PageHeaderProps> = (props) =>{
 				<Image source={logoImg} resizeMode="contain" />
 
 			</View>
-
-			<Text style={styles.title}>{props.title}</Text>
+			<View style={styles.header}>
+				<Text style={styles.title}>{props.title}</Text>
+				{props.headerRight}
+			</View>
+			
 			{props.children}
 		</View>
 	)

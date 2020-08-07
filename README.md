@@ -14,7 +14,7 @@ yarn install
 ```
 
 ## Status
-![70%](https://progress-bar.dev/70)
+![85%](https://progress-bar.dev/85)
 
 
 ## Contribuindo
