@@ -1,34 +1,57 @@
-import React,{ useState, ChangeEvent} from 'react'
-import {View, Text, Image, ScrollView, TextInput} from 'react-native'
-import api from '../../services/api'
-import AsyncStorage from '@react-native-community/async-storage'
-import PageHeader from '../../components/PageHeader'
-import TeacherItem from '../../components/TeacherItem'
-import {BorderlessButton, RectButton} from 'react-native-gesture-handler'
-import {Feather} from '@expo/vector-icons'
-import heartOutlineIcon from '../../assets/images/icons/heart-outline.png'
-import whatsappIcon from '../../assets/images/icons/whatsapp.png'
+import React,{ useState, ChangeEvent} from "react"
+import {View, Text, Image, FlatList, TextInput, ActivityIndicator} from "react-native"
+import api from "../../services/api"
+import AsyncStorage from "@react-native-community/async-storage"
+import PageHeader from "../../components/PageHeader"
+import TeacherItem, {TeacherItemProps} from "../../components/TeacherItem"
+import {BorderlessButton, RectButton} from "react-native-gesture-handler"
+import {Feather} from "@expo/vector-icons"
+import heartOutlineIcon from "../../assets/images/icons/heart-outline.png"
+import whatsappIcon from "../../assets/images/icons/whatsapp.png"
 
-import styles from './styles'
+import styles from "./styles"
 function TeacherList(){
-	const [proffys, setProffys] = useState([])
-	const [subject, setSubject] = useState('')
-	const [weekday, setWeekday] = useState('')
+	const [proffys, setProffys] = useState<Object[]>([])
+	const [subject, setSubject] = useState("")
+	const [weekday, setWeekday] = useState("")
 	const [favorites, setFavorites] = useState<Number[]>([])
-	const [time, setTime] = useState('')
+	const [time, setTime] = useState("")
+	const [page, setPage] = useState(1)
+	const [maxPage, setMaxPage] = useState(100)
 
-	const [loading, setLoading] = useState(true)
+	const [loading, setLoading] = useState(false)
 	const [isFiltersVisible, setIsFiltersVisible] = useState(false)
 
 	function loadFavorites(){
-		AsyncStorage.getItem('favorites').then(response=>{
+		AsyncStorage.getItem("favorites").then(response=>{
 			if(response){
 				const favoritedTeachers = JSON.parse(response)
-				const favoritedTeachersIds = favoritedTeachers.map((teacher:any)=>{
+				const favoritedTeachersIds = favoritedTeachers.map((teacher:TeacherItemProps["teacher"])=>{
 					return teacher.id
 				})
 				setFavorites(favoritedTeachersIds)
 			}
+		})
+	}
+
+	function loadProffys(){
+		setLoading(true)
+		api.get("classes", {
+			params:{
+				subject,
+				weekday,
+				time,
+				page,
+			}
+		}).then(res=>{
+			setProffys([...proffys,...res.data.data])
+			setLoading(false)
+			if(page===1){
+				setMaxPage(res.data.pagination.lastPage)
+			}
+			setPage(page+1)
+		}).catch(res=>{
+			console.log(res)
 		})
 	}
 	function handleFiltersVisible(){
@@ -36,22 +59,35 @@ function TeacherList(){
 	}
 
 	function handleFiltrateButton(){
-		setLoading(true)
+		setPage(1)
 		loadFavorites()
-		api.get('classes', {
-			params:{
-				subject,
-				weekday,
-				time
-			}
-		}).then(res=>{
-			setProffys(res.data)
-			setLoading(false)
-		}).catch(res=>{
-			console.log(res)
-		})
+		loadProffys()
 		setIsFiltersVisible(!isFiltersVisible)
 
+	}
+
+	function renderItems(proffy:any){
+		return (
+			<TeacherItem key={proffy.id} teacher={proffy} favorited={favorites.includes(proffy.id)}  />
+		)
+	}
+
+	function renderFooter(){
+		if (page>maxPage){
+			return (
+				<View style={styles.maxReached}>
+					<Text style={styles.maxReachedText}> Não há Proffys disponíveis com o filtro selecionado ou todos já foram listados :)</Text>
+				</View>
+			)
+		}
+		if(loading){
+			return (
+				<View style={styles.maxReached}>
+					<ActivityIndicator />
+				</View>
+			)
+		}
+		return null
 	}
 	return (
 		<View style={styles.container} >
@@ -106,19 +142,20 @@ function TeacherList(){
 				)}
 			</PageHeader>
 
-			<ScrollView
+			<FlatList
 				style={styles.teacherList}
 				contentContainerStyle={{
 					paddingHorizontal: 16,
 					paddingBottom: 16
 				}}
-			>
-				{!loading && proffys.map((proffy:any)=>{
-					return (
-						<TeacherItem key={proffy.id} teacher={proffy} favorited={favorites.includes(proffy.id)}  />
-					)
-				})}
-			</ScrollView>
+				data={proffys}
+				renderItem={({item})=>renderItems(item)}
+				onEndReached={page <= maxPage ? loadProffys : null}
+				keyExtractor={(item:TeacherItemProps["teacher"]) => item.id.toString()}
+  				onEndReachedThreshold={0.15}
+  				ListFooterComponent={renderFooter}
+			/>
+
 		</View>
 	)
 }

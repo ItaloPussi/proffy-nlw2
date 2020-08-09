@@ -25,10 +25,24 @@ function TeacherForm(){
 			{weekday:0, from: '', to: ''}
 		])
 	}
+	function RemoveScheduleItem(){
+		console.log(schedule)
+		const scheduleItems = schedule
+		scheduleItems.pop()
+		console.log(scheduleItems)
+		setSchedule([...scheduleItems])
+	}
 
 
 	function handleCreateProffy(event:any){
 		event.preventDefault()
+		if(name.length< 3){
+			let input = document.getElementById('name')
+			if(input){
+				input.focus()
+			}
+			return false
+		}
 		api.post('classes',{
 			name,
 			avatar,
@@ -69,7 +83,7 @@ function TeacherForm(){
 					<fieldset>
 						<legend>Seus dados</legend>
 
-						<InputBlock id="name" text="Nome completo" value={name} onChange={event => {setName(event.target.value)}} />
+						<InputBlock id="name"text="Nome completo" value={name} onChange={event => {setName(event.target.value)}} />
 						<InputBlock id="avatar" text="Avatar" value={avatar} onChange={event => {setAvatar(event.target.value)}} />
 						<InputBlock id="whatsapp" text="Whatsapp" value={whatsapp} onChange={event => {setWhatsapp(event.target.value)}} />
 						<TextareaBlock id="description" text="Biografia" value={description} onChange={event => {setDescription(event.target.value)}} />
@@ -91,7 +105,7 @@ function TeacherForm(){
 								{value: 'Matemática', label: 'Matemática'},
 								{value: 'Português', label: 'Português'},
 								{value: 'Química', label: 'Química'},
-								{value: 'Historia', label: 'História'},
+								{value: 'História', label: 'História'},
 								{value: 'Geografia', label: 'Geografia'},
 								{value: 'Filosofia', label: 'Filosofia'},
 								{value: 'Sociologia', label: 'Sociologia'},
@@ -144,7 +158,8 @@ function TeacherForm(){
 								</div>
 							)
 						})}
-						
+						{schedule.length >1 && <button type="button" onClick={RemoveScheduleItem} className="removeButton">Remover</button>}
+
 					</fieldset>
 
 					<footer>

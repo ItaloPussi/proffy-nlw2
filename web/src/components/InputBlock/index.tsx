@@ -10,7 +10,7 @@ const InputBlock:React.FC<InputBlockProps> = ({id, text, ...rest}) =>{
 	return (
 		<div className="input-block">
 			<label htmlFor={id}>{text}</label>
-			<input type='text' id={id} {...rest} />
+			<input type='text' required={true} id={id} {...rest} />
 		</div>
 	)
 }

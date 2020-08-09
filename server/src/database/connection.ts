@@ -1,5 +1,7 @@
 import knex from 'knex'
 import path from 'path'
+import { attachPaginate} from 'knex-paginate'
+attachPaginate()
 
 const db = knex({
 	client: 'sqlite3',

@@ -1,7 +1,7 @@
 # Proffy
 
 Proffy é uma aplicação multiplataforma responsável por interligar alunos a diferentes professores de diversas matérias.
-Está sendo desenvolvida durante a 2ª edição da [Next Level Week](https://nextlevelweek.com/).
+Foi desenvolvida durante a 2ª edição da [Next Level Week](https://nextlevelweek.com/) e agora está sendo atualizada periodicamente com novas funções criadas por mim.
 
 ## Instalação
 
@@ -14,7 +14,7 @@ yarn install
 ```
 
 ## Status
-![85%](https://progress-bar.dev/85)
+![86%](https://progress-bar.dev/86)
 
 
 ## Contribuindo

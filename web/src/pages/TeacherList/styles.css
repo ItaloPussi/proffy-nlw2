@@ -6,6 +6,30 @@
 #search-teachers{
 	margin-top:3.2rem;
 }
+#page-teacher-list > footer{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 90%;
+	margin:0 auto;
+}
+#page-teacher-list > footer button{
+	background: none;
+	outline: 0;
+	border:0;
+	font-size: 1.5rem;
+	cursor:pointer;
+	color:var(--color-text-base);
+	transition: color 0.2s;
+}
+
+#page-teacher-list > footer button:hover{
+	color:var(--color-text-complement);
+}
+#page-teacher-list > footer button.disabledButton{
+	cursor:initial;
+	color:var(--color-text-complement);
+}
 label{
 	color: var(--color-text-in-primary);
 }
@@ -27,6 +51,12 @@ label{
 	#search-teachers .select-block + .select-block{
 		margin-top: 0 ;
 	}
+
+	#page-teacher-list > footer{
+		max-width: 740px;
+		margin-bottom: 4rem;
+	}
+
 }
 
 

@@ -9,7 +9,7 @@ import whastsappIcon from '../../assets/images/icons/whatsapp.png'
 
 import styles from './styles'
 
-interface TeacherItemProps{
+export interface TeacherItemProps{
 	teacher:{
 		id: number,
 		name: string,
@@ -17,7 +17,7 @@ interface TeacherItemProps{
 		subject: string,
 		description: string,
 		price: string,
-		whatsapp?: string
+		whatsapp: string
 	},
 	favorited: boolean
 }

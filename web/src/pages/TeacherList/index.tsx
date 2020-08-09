@@ -8,27 +8,64 @@ import api from '../../servers/api'
 import './styles.css'
 
 function TeacherList(){
-	const [subject,setSubject] = useState('')
-	const [weekday,setWeekday] = useState('')
+	const [subject,setSubject] = useState('any')
+	const [weekday,setWeekday] = useState('any')
 	const [time,setTime] = useState('')
 	const [proffys, setProffys] = useState([])
 	const [loading, setLoading] = useState(true)
-	useEffect(()=>{
+	const [page, setPage] = useState(1)
+	const [maxPage, setMaxPage] = useState()
+
+	function getItems(){
 		setLoading(true)
+		let newTime = time
+		if(time === ''){
+			newTime = 'any'
+		}
 		api.get(`classes`,{
 			params:{
 				subject,
 				weekday,
-				time
+				time: newTime,
+				page
 			}
 		}).then((res)=>{
-			setProffys(res.data)
-			console.log(proffys)
+			setProffys(res.data.data)
 			setLoading(false)
+			if(res.data.pagination.lastPage !==undefined){
+				setMaxPage(res.data.pagination.lastPage)
+			}
 		}).catch(res=>{
 			console.log(res)
 		})
+	}
+	useEffect(()=>{
+		getItems()
+	},[page])
+
+	useEffect(()=>{
+		setPage(1)
+		getItems()
 	},[subject, weekday, time])
+
+	function handlePageItems(type:string){
+		let currentPage = page
+		if(type === 'negative'){
+			if(currentPage ===1){
+				return false
+			}
+			currentPage--
+		}else{
+			if(currentPage === maxPage){
+				return false
+			}
+			currentPage++
+		}
+		setPage(currentPage)
+	}
+
+	
+
 	return (
 		<div id="page-teacher-list" className="container">
 			<PageHeader title="Estes são os proffys disponíveis.">
@@ -38,6 +75,7 @@ function TeacherList(){
 						text="Matéria"
 						value={subject} 
 						options={[
+							{value: 'any', label: 'Todas'},
 							{value: 'Artes', label: 'Artes'},
 							{value: 'Biologia', label: 'Biologia'},
 							{value: 'Física', label: 'Física'},
@@ -58,6 +96,7 @@ function TeacherList(){
 						text="Dia da semana"
 						value={weekday} 
 						options={[
+							{value: 'any', label: 'Qualquer'},
 							{value: '0', label: 'Domingo'},
 							{value: '1', label: 'Segunda-feira'},
 							{value: '2', label: 'Terça-feira'},
@@ -80,6 +119,26 @@ function TeacherList(){
 					/>
 				)
 			})}
+			<footer>
+				<button 
+					type="button" 
+					onClick={()=>handlePageItems('negative')}
+					disabled={page===1 ? true : false}
+					className={page===1 ? 'disabledButton' : ''}
+				>
+					&lt;- Anterior
+				</button>
+
+				<button 
+					type="button" 
+					onClick={()=>handlePageItems('positive')}
+					disabled={page===maxPage ? true : false}
+					className={page===maxPage ? 'disabledButton' : ''}
+
+				>
+					Próxima-&gt;	
+				</button>
+			</footer>
 		</div>
 	)
 }

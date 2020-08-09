@@ -43,6 +43,15 @@ const styles = StyleSheet.create({
 		color: '#FFF',
 		fontFamily: 'Archivo_700Bold',
 		fontSize:16,
+	},
+	maxReached:{
+		alignSelf:'center',
+		marginTop: 40
+	},
+	maxReachedText:{
+		fontSize:14,
+		fontFamily: 'Archivo_700Bold',
+		color:'#9C98A6'
 	}
 })
 
