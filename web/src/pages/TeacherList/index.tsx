@@ -4,7 +4,7 @@ import PageHeader from '../../components/PageHeader'
 import TeacherItem from '../../components/TeacherItem'
 import InputBlock from '../../components/InputBlock'
 import SelectBlock from '../../components/SelectBlock'
-import api from '../../servers/api'
+import api from '../../services/api'
 import './styles.css'
 
 function TeacherList(){

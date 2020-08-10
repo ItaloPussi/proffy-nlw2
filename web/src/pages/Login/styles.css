@@ -1,0 +1,72 @@
+.login-page{
+	display: flex;
+	width: 100vw;
+	height: 100vh;
+
+	color: var(--color-text-in-primary);
+	background:var(--color-primary);
+}
+
+.login-background{
+	width: 50vw;
+	height: 100vh;
+}
+
+.login-form{
+	width: 50vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	background: var(--color-background)
+}
+
+.login-form h1{
+	color:var(--color-text-title);
+	font-family: 'Poppins';
+	font-size:3.6rem;
+	font-weight: 600;
+	line-height: 3.6rem;
+}
+
+.login-form .inputGroup{
+	width: 75%;
+	color: var( --color-text-complement);
+	position: relative;
+
+}
+
+.login-form .inputGroup label{
+	color: transparent;
+	font-size: 1.1rem;
+
+}
+.login-form .inputGroup .labelColor{
+	color: var( --color-text-complement);
+}
+.login-form .inputGroup input{
+	border:0;
+	height: 4rem;
+	width: 100%;
+	color: var( --color-text-complement);
+	outline: 0;
+}
+.login-form button{
+	width: 75%;
+	margin-top:2rem;
+
+}
+.backgroundImage{
+	width: 100%;
+}
+
+.inputGroup:focus-within::after {
+	width: 2px;
+	height: 6.1rem;
+	content: "";
+	background-color: var(--color-primary-light);
+	position: absolute;
+	left:-1rem;
+	top:0;
+}

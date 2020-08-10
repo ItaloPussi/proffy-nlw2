@@ -1,5 +1,5 @@
 import React from 'react'
-import api from '../../servers/api'
+import api from '../../services/api'
 import './styles.css'
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg'
 

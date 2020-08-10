@@ -8,6 +8,7 @@ interface ScheduleItem{
 	to: string
 }
 class ClassesController{
+	
 	async index(request:Request,response: Response){
 		let page = 1
 		const filters = request.query

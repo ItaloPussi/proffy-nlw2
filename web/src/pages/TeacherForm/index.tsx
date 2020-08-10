@@ -5,7 +5,7 @@ import PageHeader from '../../components/PageHeader'
 import InputBlock from '../../components/InputBlock'
 import TextareaBlock from '../../components/TextareaBlock'
 import SelectBlock from '../../components/SelectBlock'
-import api from '../../servers/api'
+import api from '../../services/api'
 import warningIcon from '../../assets/images/icons/warning.svg'
 
 function TeacherForm(){

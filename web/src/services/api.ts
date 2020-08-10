@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {getToken} from './auth'
+import { getToken } from "./auth";
 const api = axios.create({
 	baseURL: 'http://192.168.0.2:3333'
 })
@@ -7,8 +7,9 @@ const api = axios.create({
 api.interceptors.request.use(async config=>{
 	const token = getToken()
 	if(token){
-		config.headers.Authorization = 'Bearer ${token}'
+		config.headers.Authorization = `Bearer ${token}`
 	}
 	return config
 })
+
 export default api

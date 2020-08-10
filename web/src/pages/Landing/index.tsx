@@ -5,7 +5,7 @@ import landingImg from '../../assets/images/landing.svg'
 import studyIcon from '../../assets/images/icons/study.svg'
 import giveClassesIcon from '../../assets/images/icons/give-classes.svg'
 import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg'
-import api from '../../servers/api'
+import api from '../../services/api'
 
 import './styles.css'
 function Landing(){
