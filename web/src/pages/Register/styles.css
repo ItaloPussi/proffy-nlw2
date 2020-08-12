@@ -1,4 +1,4 @@
-.login-page{
+.register-page{
 	display: flex;
 	width: 100vw;
 	height: 100vh;
@@ -7,12 +7,12 @@
 	background:var(--color-primary);
 }
 
-.login-background{
+.register-background{
 	width: 0;
 	height: 100vh;
 }
 
-.login-form{
+.register-form{
 	width: 100vw;
 	height: 100vh;
 	display: flex;
@@ -22,7 +22,7 @@
 	background: var(--color-background)
 }
 
-.login-form h1{
+.register-form h1{
 	color:var(--color-text-title);
 	font-family: 'Poppins';
 	font-size:3.4rem;
@@ -32,22 +32,22 @@
 	margin-bottom: 1.2rem;
 }
 
-.login-form .inputGroup{
+.register-form .inputGroup{
 	width: 50%;
 	color: var( --color-text-complement);
 	position: relative;
 
 }
 
-.login-form .inputGroup label{
+.register-form .inputGroup label{
 	color: transparent;
 	font-size: 1.1rem;
 
 }
-.login-form .inputGroup .labelColor{
+.register-form .inputGroup .labelColor{
 	color: var( --color-text-complement);
 }
-.login-form .inputGroup input{
+.register-form .inputGroup input{
 	border:0;
 	height: 4rem;
 	width: 100%;
@@ -55,18 +55,18 @@
 	outline: 0;
 }
 
-.login-form .inputGroup button{
+.register-form .inputGroup button{
 	position: absolute;
 	border:0;
 	outline: 0;
 	top:3rem;
 	cursor:pointer;
 }
-.login-form .inputGroup button img{
+.register-form .inputGroup button img{
 	height:2rem;
 }
 
-.login-form > button{
+.register-form > button{
 	width: 50%;
 	margin-top:2rem;
 	background:#DCDCE5;
@@ -81,12 +81,12 @@
 	color: var( --color-text-complement);
 	transition: background-color 0.2s;
 }
-.login-form > button.buttonReady{
+.register-form > button.buttonReady{
 	cursor: pointer;
 	background:var(--color-secundary);
 	color:var(--color-button-text);
 }
-.login-form > button.buttonReady:hover{
+.register-form > button.buttonReady:hover{
 	background:  var(--color-secundary-dark)
 }
 .backgroundImage{
@@ -103,7 +103,7 @@
 	top:0;
 }
 
-.login-form .registerBlock{
+.register-form .registerBlock{
 	width: 50%;
 	display: flex;
 	justify-content: space-between;
@@ -111,10 +111,10 @@
 }
 
 @media(min-width: 600px){
-	.login-background{
+	.register-background{
 		width: 35vw;
 	}
-	.login-form{
+	.register-form{
 		width: 65vw;
 	}
 

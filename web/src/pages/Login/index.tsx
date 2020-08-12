@@ -4,11 +4,14 @@ import './styles.css'
 import successBackground  from '../../assets/images/success-background.svg'
 import api from '../../services/api'
 import {login} from '../../services/auth'
-
+import eyeIcon from '../../assets/images/icons/eye.svg'
+import hideIcon from '../../assets/images/icons/hide.svg'
+import {Link} from 'react-router-dom'
 
 function Login(){
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+	const [showPassword, setShowPassword] = useState(false)
 	const history = useHistory()
 	async function handleSubmit(event:FormEvent){
 		event.preventDefault()
@@ -36,11 +39,21 @@ function Login(){
 
 					<div className="inputGroup">
 						<label htmlFor="password" className={password != '' ? 'labelColor' : ''}>Senha</label>
-						<input type="password" id="password" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="Senha"/>
+						<input type={showPassword? 'text' : 'password'} className="password" id="password" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="Senha"/>
+						<button type="button" className="visiblePassword" onClick={()=>setShowPassword(!showPassword)}>
+							<img src={showPassword ? hideIcon : eyeIcon} />
+						</button>
 					</div>
 
-					<button type="submit">Enviar</button>
+					<button type="submit" disabled={(email&&password)!='' ? false :true} className={(email&&password)!='' ? 'buttonReady' : ''}>Entrar</button>
+				
+					<div className="registerBlock">
+						<Link to="register" className="registerButton">Registre-se</Link>
+						<span>É de graça</span>
+					</div>
 				</form>
+
+				
 			</div>
 		</div>
 	)
