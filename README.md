@@ -21,5 +21,5 @@ yarn install
 Pull requests são bem vindos. Para grandes mudanças, por gentileza abra uma issue para discussão.
 
 
-## License
+## Licença
 [MIT](https://choosealicense.com/licenses/mit/)
