@@ -18,7 +18,7 @@ yarn install
 
 
 ## Contribuindo
-Pull requests são bem vindos. Para grandes mudanças, por gentileza abra uma issue para discussão.
+Pull requests são bem-vindas. Para grandes mudanças, por gentileza abra uma issue para discussão.
 
 
 ## Licença
